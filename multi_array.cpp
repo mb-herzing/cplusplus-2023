@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main()  {
+int main() {
     //  Creating the grid, a multidimensional vector array
     vector<vector<int>> grid(3, vector<int>(3));
     //  Preparing input value
