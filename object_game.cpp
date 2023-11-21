@@ -29,9 +29,11 @@ public:
     }
     //  Decrease the number of guesses remaining whenever the player guesses
     void decrementGuesses() { numberOfGuesses--; }
-    //  Constructor for the GuessingGame class. Each subclass will have its own version.
+    //  Basic constructor for the GuessingGame class.
+    GuessingGame() { }
+    //  Overloaded constructor for the GuessingGame class.
     GuessingGame(int mn, int ng) {
-        cout << "Base class working!";
+        cout << "Base class working!\n";
         setMysteryNumber(generateRandomNumber(mn));
         setNumberOfGuesses(ng);
     }
@@ -45,16 +47,30 @@ public:
 
 class MediumGame : public GuessingGame {
 public:
-    //  Number between 1 and 100(?), 10 guesses(?)
+    //  Number between 1 and 100(?), 8 guesses(?)
+    MediumGame() : GuessingGame(100, 8) { cout << "Medium class working!"; }
 };
 
 class HardGame : public GuessingGame {
 public:
-    //  Number between 1 and 500(?), 15 guesses(?)
+    //  Number between 1 and 500(?), 10 guesses(?)
+    HardGame() : GuessingGame(500, 10) { cout << "Hard class working!"; }
 };
 
 int main() {
     //  Testing
-    EasyGame easy;
+    GuessingGame game;
+    cout << "Type 1 for easy, 2 for medium, and 3 for hard\n";
+    string input = "";
+    cin >> input;
+    if (input == "1") {
+        game = EasyGame();
+    }
+    else if (input == "2") {
+        game = MediumGame();
+    }
+    else if (input == "3") {
+        game = HardGame();
+    }
     return 0;
 }
