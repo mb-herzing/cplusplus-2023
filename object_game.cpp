@@ -58,19 +58,38 @@ public:
 };
 
 int main() {
-    //  Testing
+    //  Initialize variables and objects
     GuessingGame game;
-    cout << "Type 1 for easy, 2 for medium, and 3 for hard\n";
     string input = "";
-    cin >> input;
-    if (input == "1") {
-        game = EasyGame();
+    bool validInput = false;
+    //  Prompt player to select difficulty
+    cout << "Type 1 for easy, 2 for medium, and 3 for hard\n > ";
+    do {
+        //  Grab player input
+        cin >> input;
+        //  Check if it's a valid input
+        if (input == "1") {
+            game = EasyGame();
+            validInput = true;
+        }
+        else if (input == "2") {
+            game = MediumGame();
+            validInput = true;
+        }
+        else if (input == "3") {
+            game = HardGame();
+            validInput = true;
+        }
+        //  Otherwise, it is not valid
+        else {
+            cout << "Invalid input! Please try again.\n > ";
+        }
     }
-    else if (input == "2") {
-        game = MediumGame();
-    }
-    else if (input == "3") {
-        game = HardGame();
+    while (!validInput);
+    //  Once the difficulty is selected, begin the game!
+    bool numberGuessed;
+    while (!numberGuessed || game.getNumberOfGuesses() > 0) {
+        
     }
     return 0;
 }
