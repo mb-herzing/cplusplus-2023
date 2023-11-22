@@ -48,7 +48,6 @@ public:
 
     //  Overloaded constructor for the GuessingGame class.
     GuessingGame(int mn, int ng) {
-        cout << "Base class working!\n";
         //  Set the variables as they're entered
         setUpperNumber(mn);
         setMysteryNumber(generateRandomNumber(getUpperNumber()));
@@ -59,19 +58,19 @@ public:
 class EasyGame : public GuessingGame {
 public:
     //  Number between 1 and 20(?), 5 guesses(?)
-    EasyGame() : GuessingGame(20, 5) { cout << "Easy class working!"; }
+    EasyGame() : GuessingGame(20, 5) {}
 };
 
 class MediumGame : public GuessingGame {
 public:
     //  Number between 1 and 100(?), 8 guesses(?)
-    MediumGame() : GuessingGame(100, 8) { cout << "Medium class working!"; }
+    MediumGame() : GuessingGame(100, 8) {}
 };
 
 class HardGame : public GuessingGame {
 public:
     //  Number between 1 and 500(?), 10 guesses(?)
-    HardGame() : GuessingGame(500, 10) { cout << "Hard class working!"; }
+    HardGame() : GuessingGame(500, 10) {}
 };
 
 int main() {
@@ -104,10 +103,10 @@ int main() {
     }
     while (!validInput);
     //  Once the difficulty is selected, begin the game!
-    bool numberGuessed;
+    bool numberGuessed = false;
     string guessInput;
     //  While the player hasn't guessed the number and they still have guesses...
-    while (!numberGuessed || game.getNumberOfGuesses() > 0) {
+    do {
         //  Print the game information
         game.printGameInfo();
         //  Get player's guess
@@ -118,6 +117,8 @@ int main() {
             numberGuessed = true;
             //  Decrease the number of guesses anyway, since it still counts as a valid guess
             game.decrementGuesses();
+            //  Exit the loop, as the player has won!
+            break;
         }
         //  Else if the guess is higher than the number, but not above the max...
         else if (stoi(guessInput) > game.getMysteryNumber()
@@ -141,7 +142,10 @@ int main() {
             cout << "Guess wasn't within range! Please try again.";
             //  Do not decrease the number of guesses, since it wasn't a valid guess
         }
+        //  Add an extra space between each section for better readability
+        cout << endl;
     }
+    while (game.getNumberOfGuesses() > 0 && !numberGuessed);
     //  Once the game ends, check if the player guessed correctly first
     if (numberGuessed) {
         //  If they did, congratulate them and show statistics
@@ -152,7 +156,7 @@ int main() {
     //  Otherwise, the player probably ran out of guesses...
     else if (game.getNumberOfGuesses() <= 0) {
         cout << "Sorry, you didn't guess the number...\n";
-        cout << "The mystery number was " << game.getMysteryNumber() << "\n";
+        cout << "The mystery number was " << game.getMysteryNumber() << ".\n";
         cout << "Better luck next time!";
     }
     return 0;
