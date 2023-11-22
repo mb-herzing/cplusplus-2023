@@ -58,7 +58,7 @@ public:
 class EasyGame : public GuessingGame {
 public:
     //  Number between 1 and 20(?), 5 guesses(?)
-    EasyGame() : GuessingGame(20, 5) {}
+    EasyGame() : GuessingGame(20, 6) {}
 };
 
 class MediumGame : public GuessingGame {
@@ -139,7 +139,7 @@ int main() {
         //  Else, the player likely didn't enter the number right...
         else {
             //  Inform the player that their guess isn't valid
-            cout << "Guess wasn't within range! Please try again.";
+            cout << "Guess wasn't within range! Please try again.\n";
             //  Do not decrease the number of guesses, since it wasn't a valid guess
         }
         //  Add an extra space between each section for better readability
@@ -155,6 +155,7 @@ int main() {
     }
     //  Otherwise, the player probably ran out of guesses...
     else if (game.getNumberOfGuesses() <= 0) {
+        //  Inform the player of their unfortunate loss
         cout << "Sorry, you didn't guess the number...\n";
         cout << "The mystery number was " << game.getMysteryNumber() << ".\n";
         cout << "Better luck next time!";
