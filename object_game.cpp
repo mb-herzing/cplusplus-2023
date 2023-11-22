@@ -6,6 +6,7 @@ using namespace std;
 class GuessingGame {
 protected:
     int mysteryNumber;
+    int upperNumber;
     int numberOfGuesses;
 public:
     //  Gets the number the player is supposed to guess, A.K.A. the mystery number
@@ -16,6 +17,11 @@ public:
     int getNumberOfGuesses() { return numberOfGuesses; }
     //  Sets the number of guesses the player has to guess the mystery number
     void setNumberOfGuesses(int ng) { numberOfGuesses = ng; }
+    //  Gets the upper limit for the mystery number
+    int getUpperNumber() { return upperNumber; }
+    //  Sets the upper limit for the mystery number
+    void setUpperNumber(int un) { upperNumber = un; }
+
     //  Generates a random number based on the maximum for the mystery number.
     int generateRandomNumber(int upper) {
         //  Create a variable to store the random number
@@ -27,14 +33,25 @@ public:
         //  Return the newly generated number
         return random;
     }
+
     //  Decrease the number of guesses remaining whenever the player guesses
     void decrementGuesses() { numberOfGuesses--; }
+
+    //  Provide a range for the player to guess between and the number of guesses they have left
+    void printGameInfo() {
+        cout << "Guess a number between 1 and " << getUpperNumber << "!\n";
+        cout << "Number of guesses left: " << getNumberOfGuesses << "\n > ";
+    }
+
     //  Basic constructor for the GuessingGame class.
     GuessingGame() { }
+
     //  Overloaded constructor for the GuessingGame class.
     GuessingGame(int mn, int ng) {
         cout << "Base class working!\n";
-        setMysteryNumber(generateRandomNumber(mn));
+        //  Set the variables as they're entered
+        setUpperNumber(mn);
+        setMysteryNumber(generateRandomNumber(getUpperNumber()));
         setNumberOfGuesses(ng);
     }
 };
@@ -89,7 +106,7 @@ int main() {
     //  Once the difficulty is selected, begin the game!
     bool numberGuessed;
     while (!numberGuessed || game.getNumberOfGuesses() > 0) {
-        
+         
     }
     return 0;
 }
