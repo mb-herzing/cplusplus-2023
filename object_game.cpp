@@ -150,7 +150,7 @@ int main() {
     if (numberGuessed) {
         //  If they did, congratulate them and show statistics
         cout << "Congratulations! You guessed the number!\n";
-        cout << "You had " << game.getNumberOfGuesses() << " guesses remaining!\n";
+        cout << "Guesses remaining: " << game.getNumberOfGuesses() << ".\n";
         cout << "Thank you for playing!";
     }
     //  Otherwise, the player probably ran out of guesses...
