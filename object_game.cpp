@@ -39,8 +39,8 @@ public:
 
     //  Provide a range for the player to guess between and the number of guesses they have left
     void printGameInfo() {
-        cout << "Guess a number between 1 and " << getUpperNumber << "!\n";
-        cout << "Number of guesses left: " << getNumberOfGuesses << "\n > ";
+        cout << "Guess a number between 1 and " << getUpperNumber() << "!\n";
+        cout << "Number of guesses left: " << getNumberOfGuesses() << "\n > ";
     }
 
     //  Basic constructor for the GuessingGame class.
@@ -105,8 +105,55 @@ int main() {
     while (!validInput);
     //  Once the difficulty is selected, begin the game!
     bool numberGuessed;
+    string guessInput;
+    //  While the player hasn't guessed the number and they still have guesses...
     while (!numberGuessed || game.getNumberOfGuesses() > 0) {
-         
+        //  Print the game information
+        game.printGameInfo();
+        //  Get player's guess
+        cin >> guessInput;
+        //  If the number is guessed correctly...
+        if (stoi(guessInput) == game.getMysteryNumber()) {
+            //  Set the respective boolean value to true
+            numberGuessed = true;
+            //  Decrease the number of guesses anyway, since it still counts as a valid guess
+            game.decrementGuesses();
+        }
+        //  Else if the guess is higher than the number, but not above the max...
+        else if (stoi(guessInput) > game.getMysteryNumber()
+                && stoi(guessInput) <= game.getUpperNumber()) {
+            //  Inform the player the guess was too high
+            cout << "Your guess was too high!\n";
+            //  Decrease the number of guesses
+            game.decrementGuesses();
+        }
+        //  Else if the guess is lower than the number, but not below the min...
+        else if (stoi(guessInput) < game.getMysteryNumber()
+                && stoi(guessInput) >= 1) {
+            //  Inform the player the guess was too low
+            cout << "Your guess was too low!\n";
+            //  Decrease the number of guesses
+            game.decrementGuesses();
+        }
+        //  Else, the player likely didn't enter the number right...
+        else {
+            //  Inform the player that their guess isn't valid
+            cout << "Guess wasn't within range! Please try again.";
+            //  Do not decrease the number of guesses, since it wasn't a valid guess
+        }
+    }
+    //  Once the game ends, check if the player guessed correctly first
+    if (numberGuessed) {
+        //  If they did, congratulate them and show statistics
+        cout << "Congratulations! You guessed the number!\n";
+        cout << "You had " << game.getNumberOfGuesses() << " guesses remaining!\n";
+        cout << "Thank you for playing!";
+    }
+    //  Otherwise, the player probably ran out of guesses...
+    else if (game.getNumberOfGuesses() <= 0) {
+        cout << "Sorry, you didn't guess the number...\n";
+        cout << "The mystery number was " << game.getMysteryNumber() << "\n";
+        cout << "Better luck next time!";
     }
     return 0;
 }
