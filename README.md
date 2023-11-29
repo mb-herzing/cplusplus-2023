@@ -19,4 +19,4 @@ Repository for the C++ Programming class, B term of the Fall 2023 semester.
 ![An example of the game running on medium difficulty](images/is228_u4a1_medium.PNG)
 
 # Assignment 5
-![An example of the system running, featuring an "add" command and "view" command](images/is228_45a1.PNG)
+![An example of the system running, featuring an "add" command and "view" command](images/is228_u5a1.PNG)
