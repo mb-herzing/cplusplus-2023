@@ -48,7 +48,7 @@ public:
 class Hotel {
     //  Developer note: use vector.at(#) instead of vector[#]
 private:
-    vector<Tenant> tenants; //  Vector of Tenants, will store info for all tenants.
+    vector<Tenant> tenants; //  Vector of Tenants, will store all tenants and their info.
 public:
     //  (Test method) Adds a preset Tenant to the Tenants vector
     void testAddTenant(Tenant newTenant) { tenants.push_back(newTenant); }
@@ -61,22 +61,27 @@ public:
                 roomVacant = false;
                 break;
             }
-        return roomVacant;
         }
+        return roomVacant;
+    }
+
+    //  Prints a formatted list of all the tenants, organized by their respective floors.
+    void viewAllTenants() {
+
     }
 
     //  Adds a tenant to the tenants vector through user input
     void addTenant() {
         //  Create variables for storing tenant information
         string tenantName;
-        int tenantRoomNumber;
-        int tenantDuration;
+        int tenantRoomNumber = -1;
+        int tenantDuration = -1;
         string tenantComments;
         //  Create a dummy string for converting strings into numbers
         string dummyString;
 
         //  While the input for the tenant's name is not empty...
-        while (!tenantName.empty()) {
+        while (tenantName.empty()) {
             //  Prompt the user for the tenant's name
             cout << "Please enter the tenant's name:\n";
             //  Get the entire line the user entered
@@ -120,6 +125,8 @@ public:
         tenants.push_back( 
             Tenant(tenantName, tenantRoomNumber, tenantDuration, tenantComments)
         );
+        //  Inform the user the tenant was created successfully
+        cout << "New tenant entered successfully!\n";
     }
 };
 
@@ -130,14 +137,25 @@ int main() {
     string input = "";
     //  Output standard greeting
     cout << "Welcome to the Hotel Manager!\n";
-    cout << "Please enter any of the following commands:\n";
-    cout << "view - Lists all rooms occupied by tenants and tenant information.\n";
-    cout << "add - Enter a new tenant into the system.\n";
-    cout << "quit - Exits the program.\n";
     //  Perform the following...
     do {
+        //  Print out the list of available options
+        cout << "Please enter any of the following commands:\n";
+        cout << "view - Lists all rooms occupied by tenants and tenant information.\n";
+        cout << "add - Enter a new tenant into the system.\n";
+        cout << "quit - Exits the program.\n";
         //  Retrieve the user's input
         cin >> input;
+        //  If the user entered "view"...
+        if (input == "View") {
+            //  Print the list of tenants
+            hotel.viewAllTenants();
+        }
+        //  Else, if the user entered "add"...
+        else if (input == "add") {
+            //  Add a tenant to the list
+            hotel.addTenant();
+        }
     }
     //  While the input does not match "quit"
     while (input.compare("quit") != 0);
