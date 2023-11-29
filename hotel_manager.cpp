@@ -94,7 +94,7 @@ public:
             cout << "Please enter the tenant's room number in the following format:\n";
             cout << "101, 102, 103, 201, 202, 301, etc.\n";
             //  Get the string the user entered
-            cin >> dummyString;
+            getline(cin, dummyString);
             //  Convert the user entered string into a number
             tenantRoomNumber = stoi(dummyString);
             //  If the entered room number is occupied (not vacant)
@@ -111,7 +111,7 @@ public:
             //  Prompt the user for the tenant's stay duration
             cout << "Please enter the tenant's stay duration in days:\n";
             //  Get the string the user entered
-            cin >> dummyString;
+            getline(cin, dummyString);
             //  Convert the user entered string into a number
             tenantDuration = stoi(dummyString);
         }
@@ -145,7 +145,7 @@ int main() {
         cout << "add - Enter a new tenant into the system.\n";
         cout << "quit - Exits the program.\n";
         //  Retrieve the user's input
-        cin >> input;
+        getline(cin, input);
         //  If the user entered "view"...
         if (input == "View") {
             //  Print the list of tenants
