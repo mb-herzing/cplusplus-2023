@@ -1,5 +1,5 @@
-#include <iostream>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -57,17 +57,36 @@ public:
     //  Checks if a room number is vacant, i.e. not currently occupied by another tenant.
     bool isVacant(int roomNumber) {
         bool roomVacant = true;
-        for (Tenant tenant : tenants)
+        for (Tenant tenant : tenants) {
             if(tenant.getRoomNumber() == roomNumber) {
                 roomVacant = false;
                 break;
             }
         return roomVacant;
+        }
     }
 };
 
 //  Main class - starts the Hotel Manager program.
 int main() {
-    cout << "Program running!\n";
+    //  Initialize classes and variables
     Hotel hotel;
+    string input = "";
+    //  Output standard greeting
+    cout << "Welcome to the Hotel Manager!\n";
+    cout << "Please enter any of the following commands:\n";
+    cout << "view - Lists all rooms occupied by tenants and tenant information.\n";
+    cout << "add - Enter a new tenant into the system.\n";
+    cout << "quit - Exits the program.\n";
+    //  Perform the following...
+    do {
+        //  Retrieve the user's input
+        cin >> input;
+    }
+    //  While the input does not match "quit"
+    while (input.compare("quit") != 0);
+    //  Since this runs after the user quits, bid the user farewell
+    cout << "Program exited. Have a good day!";
+    //  Return a standard exit code, code 0
+    return 0;
 }
