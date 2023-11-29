@@ -23,23 +23,18 @@ public:
     string getComments() { return comments; }
     //  Outputs a formatted list of all tenant information.
     void outputTenantInfo() {
-        cout << "--------------------------------------------------------------------\n";
-        cout << "Tenant Name: " << getName() << endl;
-        cout << "Room Number: " << getRoomNumber() << endl;
-        cout << "Stay Duration (in days): " << getDuration() << endl;
+        cout << "Tenant Name: " << name << endl;
+        cout << "Room Number: " << roomNumber << endl;
+        cout << "Stay Duration (in days): " << duration << endl;
         //  If comments are empty, print "N/A", otherwise print the comments. 
-        cout << "Comments: " << (getComments().empty() ? "N/A" : getComments()) << endl;
+        cout << "Comments: " << (comments.empty() ? "N/A" : comments) << endl;
         cout << "--------------------------------------------------------------------\n";
     }
-    //  Default constructor - Name, room number, and stay duration required.
-    Tenant(string n, int r, int d) {
+    //  Default constructor - Name, room number, stay duration, and comments.
+    Tenant(string n, int r, int d, string c) {
         setName(n);
         setRoomNumber(r);
         setDuration(d);
-    }
-    //  Optional constructor - Name, room number, stay duration, and comments.
-    Tenant(string n, int r, int d, string c) {
-        Tenant(n, r, d);
         setComments(c);
     }
 };
@@ -60,7 +55,7 @@ public:
         //  For every tenant stored in the vector...
         for (Tenant tenant : tenants) {
             //  If a tenant is already in the input room number...
-            if(tenant.getRoomNumber() == roomNumber) {
+            if (tenant.getRoomNumber() == roomNumber) {
                 //  Then the room is not vacant.
                 roomVacant = false;
                 //  Break out of the loop, no need to check any others.
@@ -71,9 +66,22 @@ public:
         return roomVacant;
     }
 
-    //  Prints a formatted list of all the tenants, organized by their respective floors.
+    //  Prints a formatted list of all the tenants.
     void viewAllTenants() {
-        //  For every tenant in the 
+        //  If there are any tenants in the system...
+        if (tenants.size() > 0) {
+            //  Create an upper dividing line
+            cout << "--------------------------------------------------------------------\n";
+            //  For every tenant in the hotel...
+            for (Tenant tenant : tenants) {
+                //  Call the function to output their info.
+                tenant.outputTenantInfo();
+            }
+        }
+        //  Otherwise (if there are no tenants)...
+        else {
+            cout << "\nNo tenants are entered into the system.\n\n";
+        }
     }
 
     //  Adds a tenant to the tenants vector through user input
@@ -83,8 +91,8 @@ public:
         int tenantRoomNumber = -1;
         int tenantDuration = -1;
         string tenantComments;
-        //  Create a dummy string for converting strings into numbers
-        string dummyString;
+        //  String for storing inputs when necessary
+        string inputString;
 
         //  While the input for the tenant's name is not empty...
         while (tenantName.empty()) {
@@ -100,9 +108,9 @@ public:
             cout << "Please enter the tenant's room number in the following format:\n";
             cout << "101, 102, 103, 201, 202, 301, etc.\n";
             //  Get the string the user entered
-            getline(cin, dummyString);
+            getline(cin, inputString);
             //  Convert the user entered string into a number
-            tenantRoomNumber = stoi(dummyString);
+            tenantRoomNumber = stoi(inputString);
             //  If the entered room number is occupied (not vacant)
             if (!isVacant(tenantRoomNumber)) {
                 //  Inform the user the room number is occupied already
@@ -117,9 +125,9 @@ public:
             //  Prompt the user for the tenant's stay duration
             cout << "Please enter the tenant's stay duration in days:\n";
             //  Get the string the user entered
-            getline(cin, dummyString);
+            getline(cin, inputString);
             //  Convert the user entered string into a number
-            tenantDuration = stoi(dummyString);
+            tenantDuration = stoi(inputString);
         }
 
         //  Prompt the user for optional comments:
@@ -132,7 +140,7 @@ public:
             Tenant(tenantName, tenantRoomNumber, tenantDuration, tenantComments)
         );
         //  Inform the user the tenant was created successfully
-        cout << "New tenant entered successfully!\n";
+        cout << "New tenant entered successfully!\n\n";
     }
 };
 
@@ -147,7 +155,7 @@ int main() {
     do {
         //  Print out the list of available options
         cout << "Please enter any of the following commands:\n";
-        cout << "view - Lists all rooms occupied by tenants and tenant information.\n";
+        cout << "view - Lists information of all tenants.\n";
         cout << "add - Enter a new tenant into the system.\n";
         cout << "quit - Exits the program.\n";
         //  Retrieve the user's input
@@ -162,13 +170,18 @@ int main() {
             //  Add a tenant to the list
             hotel.addTenant();
         }
+        //  Else, if the user enters "quit"...
+        else if (input == "quit") {
+            //  Breaks out of the loop
+            break;
+        }
         //  Otherwise, the user probably entered something wrong
         else {
             cout << "Command not recognized!\n";
         }
     }
-    //  While the input does not match "quit"
-    while (input.compare("quit") != 0);
+    //  While the program is running
+    while (true);
     //  Since this runs after the user quits, bid the user farewell
     cout << "Program exited. Have a good day!";
     //  Return a standard exit code, code 0
