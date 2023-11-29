@@ -55,19 +55,25 @@ public:
 
     //  Checks if a room number is vacant, i.e. not currently occupied by another tenant.
     bool isVacant(int roomNumber) {
+        //  Assume a room is vacant by default
         bool roomVacant = true;
+        //  For every tenant stored in the vector...
         for (Tenant tenant : tenants) {
+            //  If a tenant is already in the input room number...
             if(tenant.getRoomNumber() == roomNumber) {
+                //  Then the room is not vacant.
                 roomVacant = false;
+                //  Break out of the loop, no need to check any others.
                 break;
             }
         }
+        //  Return whether the room is vacant or not.
         return roomVacant;
     }
 
     //  Prints a formatted list of all the tenants, organized by their respective floors.
     void viewAllTenants() {
-
+        //  For every tenant in the 
     }
 
     //  Adds a tenant to the tenants vector through user input
@@ -147,7 +153,7 @@ int main() {
         //  Retrieve the user's input
         getline(cin, input);
         //  If the user entered "view"...
-        if (input == "View") {
+        if (input == "view") {
             //  Print the list of tenants
             hotel.viewAllTenants();
         }
@@ -155,6 +161,10 @@ int main() {
         else if (input == "add") {
             //  Add a tenant to the list
             hotel.addTenant();
+        }
+        //  Otherwise, the user probably entered something wrong
+        else {
+            cout << "Command not recognized!\n";
         }
     }
     //  While the input does not match "quit"
