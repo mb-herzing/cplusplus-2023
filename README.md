@@ -2,18 +2,21 @@
 Repository for the C++ Programming class, B term of the Fall 2023 semester.
 
 # Assigment 1
-[Guessing game running properly](images/is228_assignment1_output.PNG)
+![Guessing game running properly](images/is228_assignment1_output.PNG)
 
 # Assigment 2
-[Multidimensional array running](images/is228_assignment2_output.PNG)
+![Multidimensional array running](images/is228_assignment2_output.PNG)
 
 # Assignment 3
 ### Start
-[The start of the game and its rules](images/is228_u3a1_start.PNG)
+![The start of the game and its rules](images/is228_u3a1_start.PNG)
 ### Win
-[The win screen of the game](images/is228_u3a1_win.PNG)
+![The win screen of the game](images/is228_u3a1_win.PNG)
 ### Lose
-[The lose screen of the game](images/is228_u3a1_start.PNG)
+![The lose screen of the game](images/is228_u3a1_start.PNG)
 
 # Assignment 4
-[An example of the game running on medium difficulty](images/is228_u4a1_medium.PNG)
+![An example of the game running on medium difficulty](images/is228_u4a1_medium.PNG)
+
+# Assignment 5
+![An example of the system running, featuring an "add" command and "view" command](images/is228_45a1.PNG)
