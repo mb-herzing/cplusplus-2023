@@ -39,9 +39,7 @@ public:
     }
     //  Optional constructor - Name, room number, stay duration, and comments.
     Tenant(string n, int r, int d, string c) {
-        setName(n);
-        setRoomNumber(r);
-        setDuration(d);
+        Tenant(n, r, d);
         setComments(c);
     }
 };
@@ -52,8 +50,9 @@ class Hotel {
 private:
     vector<Tenant> tenants; //  Vector of Tenants, will store info for all tenants.
 public:
-    //  Adds a Tenant to the Tenants vector
-    void addTenant(Tenant newTenant) { tenants.push_back(newTenant); }
+    //  (Test method) Adds a preset Tenant to the Tenants vector
+    void testAddTenant(Tenant newTenant) { tenants.push_back(newTenant); }
+
     //  Checks if a room number is vacant, i.e. not currently occupied by another tenant.
     bool isVacant(int roomNumber) {
         bool roomVacant = true;
@@ -64,6 +63,63 @@ public:
             }
         return roomVacant;
         }
+    }
+
+    //  Adds a tenant to the tenants vector through user input
+    void addTenant() {
+        //  Create variables for storing tenant information
+        string tenantName;
+        int tenantRoomNumber;
+        int tenantDuration;
+        string tenantComments;
+        //  Create a dummy string for converting strings into numbers
+        string dummyString;
+
+        //  While the input for the tenant's name is not empty...
+        while (!tenantName.empty()) {
+            //  Prompt the user for the tenant's name
+            cout << "Please enter the tenant's name:\n";
+            //  Get the entire line the user entered
+            getline(cin, tenantName);
+        }
+
+        //  While the input for the tenant's room number is not within the range...
+        while (tenantRoomNumber <= 100) {
+            //  Prompt the user for the tenant's room number
+            cout << "Please enter the tenant's room number in the following format:\n";
+            cout << "101, 102, 103, 201, 202, 301, etc.\n";
+            //  Get the string the user entered
+            cin >> dummyString;
+            //  Convert the user entered string into a number
+            tenantRoomNumber = stoi(dummyString);
+            //  If the entered room number is occupied (not vacant)
+            if (!isVacant(tenantRoomNumber)) {
+                //  Inform the user the room number is occupied already
+                cout << "Room " << tenantRoomNumber << " is occupied!\n";
+                //  Set the room number to an invalid number
+                tenantRoomNumber = -1;
+            }
+        }
+
+        //  While the input for the tenant's stay duration is less than or equal to 0...
+        while (tenantDuration <= 0) {
+            //  Prompt the user for the tenant's stay duration
+            cout << "Please enter the tenant's stay duration in days:\n";
+            //  Get the string the user entered
+            cin >> dummyString;
+            //  Convert the user entered string into a number
+            tenantDuration = stoi(dummyString);
+        }
+
+        //  Prompt the user for optional comments:
+        cout << "(Optional) Please enter comments about the tenant:\n";
+        //  Get the entire line the user entered
+        getline(cin, tenantComments);
+
+        //  Once all of the information is entered, insert the new tenant into the vector
+        tenants.push_back( 
+            Tenant(tenantName, tenantRoomNumber, tenantDuration, tenantComments)
+        );
     }
 };
 
