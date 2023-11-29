@@ -27,12 +27,47 @@ public:
         cout << "Tenant Name: " << getName() << endl;
         cout << "Room Number: " << getRoomNumber() << endl;
         cout << "Stay Duration (in days): " << getDuration() << endl;
+        //  If comments are empty, print "N/A", otherwise print the comments. 
         cout << "Comments: " << (getComments().empty() ? "N/A" : getComments()) << endl;
         cout << "--------------------------------------------------------------------\n";
+    }
+    //  Default constructor - Name, room number, and stay duration required.
+    Tenant(string n, int r, int d) {
+        setName(n);
+        setRoomNumber(r);
+        setDuration(d);
+    }
+    //  Optional constructor - Name, room number, stay duration, and comments.
+    Tenant(string n, int r, int d, string c) {
+        setName(n);
+        setRoomNumber(r);
+        setDuration(d);
+        setComments(c);
+    }
+};
+
+//  Hotel class - Holds all the Tenant objects, allows for more information as well.
+class Hotel {
+    //  Developer note: use vector.at(#) instead of vector[#]
+private:
+    vector<Tenant> tenants; //  Vector of Tenants, will store info for all tenants.
+public:
+    //  Adds a Tenant to the Tenants vector
+    void addTenant(Tenant newTenant) { tenants.push_back(newTenant); }
+    //  Checks if a room number is vacant, i.e. not currently occupied by another tenant.
+    bool isVacant(int roomNumber) {
+        bool roomVacant = true;
+        for (Tenant tenant : tenants)
+            if(tenant.getRoomNumber() == roomNumber) {
+                roomVacant = false;
+                break;
+            }
+        return roomVacant;
     }
 };
 
 //  Main class - starts the Hotel Manager program.
 int main() {
-    cout << "Program running!";
+    cout << "Program running!\n";
+    Hotel hotel;
 }
