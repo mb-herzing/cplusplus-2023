@@ -153,11 +153,21 @@ public:
         //  Perform the following...
         do {
             //  Prompt the user for the tenant's room number
-            cout << "Please enter the room number to remove the tenant from:\n";
+            cout << "Please enter the room number to remove the tenant from.\n";
+            cout << "To exit this command, type 'quit'.\n";
             //  Get the string the user entered
             getline(cin, inputString);
-            //  Convert the user entered string into a number
-            tenantRoomNumber = stoi(inputString);
+            //  If the user entered 'quit'...
+            if (inputString == "quit") {
+                //  Exit the loop
+                break;
+            }
+            //  Else...
+            else {
+                //  Convert the user entered string into a number
+                tenantRoomNumber = stoi(inputString);
+            }
+
             //  If the entered room number is vacant (not occupied)...
             if (isVacant(tenantRoomNumber)) {
                 //  Inform the user the room number is empty already
@@ -167,7 +177,32 @@ public:
             }
             //  Else (if the room is occupied)...
             else {
-                
+                //  For every tenant in the system...
+                for (Tenant tenant : tenants) {
+                    //  If the tenant's room number matches the input room number...
+                    if (tenant.getRoomNumber() == tenantRoomNumber) {
+                        //  Print the tenant's information
+                        tenant.outputTenantInfo();
+                        //  Ask the user to confirm deletion
+                        cout << "Would you like to delete this tenant?\n(y/n):\n";
+                        //  Get the user's input
+                        getline(cin, inputString);
+                        //  If the user entered "y" (yes)...
+                        if (inputString == "y") {
+                            //  Insert code to delete tenant here
+                        }
+                        // Else, if the user entered "n" (no)...
+                        else if (inputString == "n") {
+                            //  Inform the user the tenant will remain in the system
+                            cout << "Deletion canceled.\n\n";
+                        }
+                        //  Else (if the input is invalid)
+                        else {
+                            //  Inform user the input was unrecognized.
+                            cout << "Unknown command, please try again.\n\n";
+                        }
+                    }
+                }
             }
         }
         //  ...while the selected room number is invalid
