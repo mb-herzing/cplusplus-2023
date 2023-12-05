@@ -145,7 +145,7 @@ public:
 
     //  Removes a tenant from the tenant vector based on user input
     void removeTenant() {
-        
+
     }
 };
 
@@ -162,6 +162,7 @@ int main() {
         cout << "Please enter any of the following commands:\n";
         cout << "view - Lists information of all tenants.\n";
         cout << "add - Enter a new tenant into the system.\n";
+        cout << "remove - Delete a tenant from the system.\n";
         cout << "quit - Exits the program.\n";
         //  Retrieve the user's input
         getline(cin, input);
@@ -174,6 +175,11 @@ int main() {
         else if (input == "add") {
             //  Add a tenant to the list
             hotel.addTenant();
+        }
+        //  Else, if the user entered "remove"...
+        else if (input == "remove") {
+            //  Remove a tenant from the list
+            hotel.removeTenant();
         }
         //  Else, if the user enters "quit"...
         else if (input == "quit") {
