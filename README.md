@@ -13,7 +13,7 @@ Repository for the C++ Programming class, B term of the Fall 2023 semester.
 ### Win
 ![The win screen of the game](images/is228_u3a1_win.PNG)
 ### Lose
-![The lose screen of the game](images/is228_u3a1_start.PNG)
+![The lose screen of the game](images/is228_u3a1_lose.PNG)
 
 # Assignment 4
 ![An example of the game running on medium difficulty](images/is228_u4a1_medium.PNG)
