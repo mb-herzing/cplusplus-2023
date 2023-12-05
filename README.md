@@ -22,4 +22,4 @@ Repository for the C++ Programming class, B term of the Fall 2023 semester.
 ![An example of the system running, featuring an "add" command and "view" command](images/is228_u5a1.PNG)
 
 # Assignment 6
-![An example of the complete hotel management system, with the add, view, and remove commands](images/iss228_u6a2.PNG)
+![An example of the complete hotel management system, with the add, view, and remove commands](images/is228_u6a2.PNG)
