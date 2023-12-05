@@ -80,7 +80,7 @@ public:
         }
         //  Otherwise (if there are no tenants)...
         else {
-            cout << "\nNo tenants are entered into the system.\n\n";
+            cout << "> No tenants are entered into the system.\n\n";
         }
     }
 
@@ -97,7 +97,7 @@ public:
         //  While the input for the tenant's name is not empty...
         while (tenantName.empty()) {
             //  Prompt the user for the tenant's name
-            cout << "Please enter the tenant's name:\n";
+            cout << "> Please enter the tenant's name:\n";
             //  Get the entire line the user entered
             getline(cin, tenantName);
         }
@@ -105,8 +105,8 @@ public:
         //  While the input for the tenant's room number is not within the range...
         while (tenantRoomNumber <= 100) {
             //  Prompt the user for the tenant's room number
-            cout << "Please enter the tenant's room number in the following format:\n";
-            cout << "101, 102, 103, 201, 202, 301, etc.\n";
+            cout << "> Please enter the tenant's room number in the following format:\n";
+            cout << "> 101, 102, 103, 201, 202, 301, etc.\n";
             //  Get the string the user entered
             getline(cin, inputString);
             //  Convert the user entered string into a number
@@ -114,7 +114,7 @@ public:
             //  If the entered room number is occupied (not vacant)
             if (!isVacant(tenantRoomNumber)) {
                 //  Inform the user the room number is occupied already
-                cout << "Room " << tenantRoomNumber << " is occupied!\n";
+                cout << "> Room " << tenantRoomNumber << " is occupied!\n";
                 //  Set the room number to an invalid number
                 tenantRoomNumber = -1;
             }
@@ -123,7 +123,7 @@ public:
         //  While the input for the tenant's stay duration is less than or equal to 0...
         while (tenantDuration <= 0) {
             //  Prompt the user for the tenant's stay duration
-            cout << "Please enter the tenant's stay duration in days:\n";
+            cout << "> Please enter the tenant's stay duration in days:\n";
             //  Get the string the user entered
             getline(cin, inputString);
             //  Convert the user entered string into a number
@@ -131,7 +131,7 @@ public:
         }
 
         //  Prompt the user for optional comments:
-        cout << "(Optional) Please enter comments about the tenant:\n";
+        cout << "> (Optional) Please enter comments about the tenant:\n";
         //  Get the entire line the user entered
         getline(cin, tenantComments);
 
@@ -140,7 +140,7 @@ public:
             Tenant(tenantName, tenantRoomNumber, tenantDuration, tenantComments)
         );
         //  Inform the user the tenant was created successfully
-        cout << "New tenant entered successfully!\n\n";
+        cout << "> New tenant entered successfully!\n\n";
     }
 
     //  Removes a tenant from the tenant vector based on user input
@@ -153,8 +153,8 @@ public:
         //  Perform the following...
         do {
             //  Prompt the user for the tenant's room number
-            cout << "Please enter the room number to remove the tenant from.\n";
-            cout << "To exit this command, type 'quit'.\n";
+            cout << "> Please enter the room number to remove the tenant from.\n";
+            cout << "> To exit this command, type 'quit'.\n";
             //  Get the string the user entered
             getline(cin, inputString);
             //  If the user entered 'quit'...
@@ -171,7 +171,7 @@ public:
             //  If the entered room number is vacant (not occupied)...
             if (isVacant(tenantRoomNumber)) {
                 //  Inform the user the room number is empty already
-                cout << "Room " << tenantRoomNumber << " is empty!\n";
+                cout << "> Room " << tenantRoomNumber << " is empty!\n";
                 //  Set the room number to an invalid number
                 tenantRoomNumber = -1;
             }
@@ -184,23 +184,25 @@ public:
                         //  Print the tenant's information
                         tenants.at(index).outputTenantInfo();
                         //  Ask the user to confirm deletion
-                        cout << "Would you like to delete this tenant?\n(y/n):\n";
+                        cout << "> Would you like to delete this tenant?\n> (y/n):\n";
                         //  Get the user's input
                         getline(cin, inputString);
                         //  If the user entered "y" (yes)...
                         if (inputString == "y") {
                             //  Remove the tenant from the vector based on index number
                             tenants.erase(tenants.begin() + index);
+                            //  Inform the user the tenant was removed
+                            cout << "> Tenant in room " << tenantRoomNumber << " removed!\n\n";
                         }
                         // Else, if the user entered "n" (no)...
                         else if (inputString == "n") {
                             //  Inform the user the tenant will remain in the system
-                            cout << "Deletion canceled.\n\n";
+                            cout << "> Deletion canceled.\n\n";
                         }
                         //  Else (if the input is invalid)
                         else {
                             //  Inform user the input was unrecognized.
-                            cout << "Unknown command, please try again.\n\n";
+                            cout << "> Unknown command, please try again.\n\n";
                         }
                     }
                 }
@@ -217,15 +219,15 @@ int main() {
     Hotel hotel;
     string input = "";
     //  Output standard greeting
-    cout << "Welcome to the Hotel Manager!\n";
+    cout << "> Welcome to the Hotel Manager!\n";
     //  Perform the following...
     do {
         //  Print out the list of available options
-        cout << "Please enter any of the following commands:\n";
-        cout << "view - Lists information of all tenants.\n";
-        cout << "add - Enter a new tenant into the system.\n";
-        cout << "remove - Delete a tenant from the system.\n";
-        cout << "quit - Exits the program.\n";
+        cout << "> Please enter any of the following commands:\n";
+        cout << "> view - Lists information of all tenants.\n";
+        cout << "> add - Enter a new tenant into the system.\n";
+        cout << "> remove - Delete a tenant from the system.\n";
+        cout << "> quit - Exits the program.\n";
         //  Retrieve the user's input
         getline(cin, input);
         //  If the user entered "view"...
@@ -250,14 +252,14 @@ int main() {
         }
         //  Otherwise, the user probably entered something wrong
         else {
-            cout << "Command not recognized!\n";
+            cout << "> Command not recognized!\n";
         }
     }
     //  While the program is running
     while (true);
 
     //  Since this runs after the user quits, bid the user farewell
-    cout << "Program exited. Have a good day!";
+    cout << "> Program exited. Have a good day!";
     //  Return a standard exit code, code 0
     return 0;
 }
