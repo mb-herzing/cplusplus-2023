@@ -178,18 +178,19 @@ public:
             //  Else (if the room is occupied)...
             else {
                 //  For every tenant in the system...
-                for (Tenant tenant : tenants) {
+                for (int index = 0; index < tenants.size(); index++) {
                     //  If the tenant's room number matches the input room number...
-                    if (tenant.getRoomNumber() == tenantRoomNumber) {
+                    if (tenants.at(index).getRoomNumber() == tenantRoomNumber) {
                         //  Print the tenant's information
-                        tenant.outputTenantInfo();
+                        tenants.at(index).outputTenantInfo();
                         //  Ask the user to confirm deletion
                         cout << "Would you like to delete this tenant?\n(y/n):\n";
                         //  Get the user's input
                         getline(cin, inputString);
                         //  If the user entered "y" (yes)...
                         if (inputString == "y") {
-                            //  Insert code to delete tenant here
+                            //  Remove the tenant from the vector based on index number
+                            tenants.erase(tenants.begin() + index);
                         }
                         // Else, if the user entered "n" (no)...
                         else if (inputString == "n") {
