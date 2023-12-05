@@ -142,6 +142,11 @@ public:
         //  Inform the user the tenant was created successfully
         cout << "New tenant entered successfully!\n\n";
     }
+
+    //  Removes a tenant from the tenant vector based on user input
+    void removeTenant() {
+        
+    }
 };
 
 //  Main class - starts the Hotel Manager program.
