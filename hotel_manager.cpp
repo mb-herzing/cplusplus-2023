@@ -145,7 +145,33 @@ public:
 
     //  Removes a tenant from the tenant vector based on user input
     void removeTenant() {
+        //  Variables for tenant information
+        int tenantRoomNumber = -1;
+        //  String for storing the user's input
+        string inputString;
 
+        //  Perform the following...
+        do {
+            //  Prompt the user for the tenant's room number
+            cout << "Please enter the room number to remove the tenant from:\n";
+            //  Get the string the user entered
+            getline(cin, inputString);
+            //  Convert the user entered string into a number
+            tenantRoomNumber = stoi(inputString);
+            //  If the entered room number is vacant (not occupied)...
+            if (isVacant(tenantRoomNumber)) {
+                //  Inform the user the room number is empty already
+                cout << "Room " << tenantRoomNumber << " is empty!\n";
+                //  Set the room number to an invalid number
+                tenantRoomNumber = -1;
+            }
+            //  Else (if the room is occupied)...
+            else {
+                
+            }
+        }
+        //  ...while the selected room number is invalid
+        while (tenantRoomNumber <= 100);
     }
 };
 
@@ -193,6 +219,7 @@ int main() {
     }
     //  While the program is running
     while (true);
+
     //  Since this runs after the user quits, bid the user farewell
     cout << "Program exited. Have a good day!";
     //  Return a standard exit code, code 0
